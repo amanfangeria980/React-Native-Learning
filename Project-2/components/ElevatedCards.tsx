@@ -12,7 +12,6 @@ const ElevatedCards = () => {
         <View style={[styles.card, styles.cardElevated]}>
           <Text>me</Text>
         </View>
-
         <View style={[styles.card, styles.cardElevated]}>
           <Text>to</Text>
         </View>

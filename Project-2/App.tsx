@@ -1,27 +1,29 @@
 /* eslint-disable prettier/prettier */
-import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
-import React from 'react'
-import FlatCards from './components/FlatCards'
-import ElevatedCards from './components/ElevatedCards'
+import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
+import React from 'react';
+import FlatCards from './components/FlatCards';
+import ElevatedCards from './components/ElevatedCards';
+import FancyCard from './components/FancyCard';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View>
-          <FlatCards/>
-          <ElevatedCards/>
+          <FlatCards />
+          <ElevatedCards />
+          <FancyCard />
         </View>
       </ScrollView>
-      </SafeAreaView>
-  )
-}
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgb(200,200,200)"
-  }
-})
+    backgroundColor: 'rgb(200,200,200)',
+  },
+});
 
-export default App
+export default App;
