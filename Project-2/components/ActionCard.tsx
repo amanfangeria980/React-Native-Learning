@@ -14,7 +14,7 @@ const ActionCard = () => {
   };
   return (
     <View>
-      <Text style={styles.headingText}>Blog Card</Text>
+      <Text style={styles.headingText}>Video Card</Text>
       <View style={[styles.card, styles.elevatedCard]}>
         <View style={styles.headingContainer}>
           <Text style={styles.headerText}>Aman Fangeria - Youtube</Text>
@@ -25,22 +25,24 @@ const ActionCard = () => {
           }}
           style={styles.cardImage}
         />
-      </View>
-      <View style={styles.bodyContainer}>
-        <Text numberOfLines={3}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, magni
-          eaque repellat, consequatur perferendis distinctio quos quas esse
-          ratione unde, architecto saepe tempore tempora! Lorem ipsum, dolor sit
-          amet consectetur adipisicing elit. Impedit, saepe. Consectetur
-          expedita beatae quia delectus facere qui inventore aspernatur veniam
-          ea voluptatibus repudiandae, accusamus magnam?
-        </Text>
-      </View>
-      <View style={styles.footerContainer}>
-        <TouchableOpacity
-          onPress={() => openWebsite('https://www.youtube.com/amanfangeria')}>
-          <Text style={styles.socialLinks}>Watch video...</Text>
-        </TouchableOpacity>
+        <View style={styles.bodyContainer}>
+          <Text numberOfLines={3} style={styles.bodyDescription}>
+            How do I prepare? Internships Coming? Skills Requirement | DSA |
+            Projects | Resume | Aman Fangeria
+          </Text>
+        </View>
+        <View style={styles.footerContainer}>
+          <TouchableOpacity
+            onPress={() =>
+              openWebsite('https://youtu.be/0xjO3qXrhJ4?si=rKM7-xC80_OnQoKf')
+            }>
+            <Text style={styles.socialLinks}>Watch video</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => openWebsite('https://www.youtube.com/amanfangeria')}>
+            <Text style={styles.socialLinks}>See channel</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -49,16 +51,65 @@ const ActionCard = () => {
 export default ActionCard;
 
 const styles = StyleSheet.create({
-  headingText: {},
-  card: {},
-  elevatedCard: {},
-  headingContainer: {},
-  headerText: {},
+  headingText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    paddingHorizontal: 8,
+    color: '#000000',
+  },
+  card: {
+    width: 350,
+    height: 360,
+    borderRadius: 6,
+    marginVertical: 12,
+    marginHorizontal: 16,
+  },
+  elevatedCard: {
+    backgroundColor: '#E07C24',
+    elevation: 3,
+    shadowOffset: {
+      height: 1,
+      width: 1,
+    },
+    shadowColor: '#333',
+    shadowOpacity: 0.4,
+  },
+  headingContainer: {
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  headerText: {
+    color: 'black',
+    marginTop: 10,
+    fontSize: 16,
+    fontWeight: '600',
+  },
   cardImage: {
     resizeMode: 'cover',
-    height: 230,
+    height: 180,
+    borderRadius: 5,
+    marginHorizontal: 8,
   },
-  bodyContainer: {},
-  footerContainer: {},
-  socialLinks: {},
+  bodyContainer: {
+    padding: 10,
+  },
+  footerContainer: {
+    padding: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  socialLinks: {
+    fontSize: 16,
+    color: 'black',
+    backgroundColor: 'white',
+    borderRadius: 6,
+    paddingHorizontal: 20,
+    paddingVertical: 6,
+  },
+  bodyDescription: {
+    color: 'white',
+    fontWeight: '500',
+  },
 });
