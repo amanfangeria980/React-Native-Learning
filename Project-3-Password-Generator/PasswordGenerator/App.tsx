@@ -28,30 +28,63 @@ const App = () => {
   const [useNumbers, setUseNumbers] = useState(false);
   const [useSymbols, setUseSymbols] = useState(false);
 
-  const generatePasswordString = (passwordLength: number) => {
+  const generatePasswordString = passwordLength => {
     let characterList = '';
     const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
     const digitChars = '0123456789';
     const specialChars = '!@#$%^&*()_+';
 
-    if (useUpperCase) characterList += upperCaseChars;
-    if (useLowerCase) characterList += lowerCaseChars;
-    if (useNumbers) characterList += digitChars;
-    if (useSymbols) characterList += specialChars;
+    let mandatoryChars = '';
 
-    const passwordResult = createPassword(characterList, passwordLength);
+    if (useUpperCase) {
+      characterList += upperCaseChars;
+      mandatoryChars += upperCaseChars.charAt(
+        Math.floor(Math.random() * upperCaseChars.length),
+      );
+    }
+    if (useLowerCase) {
+      characterList += lowerCaseChars;
+      mandatoryChars += lowerCaseChars.charAt(
+        Math.floor(Math.random() * lowerCaseChars.length),
+      );
+    }
+    if (useNumbers) {
+      characterList += digitChars;
+      mandatoryChars += digitChars.charAt(
+        Math.floor(Math.random() * digitChars.length),
+      );
+    }
+    if (useSymbols) {
+      characterList += specialChars;
+      mandatoryChars += specialChars.charAt(
+        Math.floor(Math.random() * specialChars.length),
+      );
+    }
+
+    const passwordResult = createPassword(
+      characterList,
+      passwordLength,
+      mandatoryChars,
+    );
     setPassword(passwordResult);
     setIsPassGenerated(true);
   };
-  const createPassword = (characters: string, passwordLength: number) => {
-    let result = '';
-    for (let i = 0; i < passwordLength; i++) {
+
+  const createPassword = (characters, passwordLength, mandatoryChars) => {
+    let result = mandatoryChars;
+    for (let i = mandatoryChars.length; i < passwordLength; i++) {
       const characterIndex = Math.floor(Math.random() * characters.length);
       result += characters.charAt(characterIndex);
     }
-    return result;
+
+    // Shuffle the result to ensure random distribution of mandatory characters
+    return result
+      .split('')
+      .sort(() => 0.5 - Math.random())
+      .join('');
   };
+
   const resetPasswordState = () => {
     setPassword('');
     setIsPassGenerated(false);
@@ -60,6 +93,7 @@ const App = () => {
     setUseNumbers(false);
     setUseSymbols(false);
   };
+
   return (
     <ScrollView keyboardShouldPersistTaps="handled">
       <SafeAreaView style={styles.appContainer}>
